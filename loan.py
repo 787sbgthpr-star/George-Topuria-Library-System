@@ -1,0 +1,33 @@
+class Loan:
+    def __init__(self, loan_id, book_id, member_id, loan_date):
+        self.loan_id = loan_id
+        self.book_id = book_id
+        self.member_id = member_id
+        self.loan_date = loan_date
+        self.return_date = ""
+
+    def mark_returned(self, return_date):
+        self.return_date = return_date
+
+    def is_active(self):
+        return self.return_date == ""
+
+    def to_csv_row(self):
+        return [
+            self.loan_id,
+            self.book_id,
+            self.member_id,
+            self.loan_date,
+            self.return_date
+        ]
+
+    def __str__(self):
+        status = "Active" if self.is_active() else f"Returned: {self.return_date}"
+
+        return (
+            f"Loan ID: {self.loan_id} | "
+            f"Book ID: {self.book_id} | "
+            f"Member Id: {self.member_id} | "
+            f"Loan Date: {self.loan_date} | "
+            f"{status}"
+        )
